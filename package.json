@@ -82,6 +82,7 @@
     "setupTestFrameworkScriptFile": "./test-setup.js"
   },
   "dependencies": {
+    "polished": "^1.9.2",
     "prop-types": "^15.5.10",
     "rc-slider": "^8.5.0",
     "styled-system": "^1.0.8"

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { space, color, propTypes, cleanElement } from 'styled-system'
+import { space, color, propTypes } from 'styled-system'
 import PropTypes from 'prop-types'
 import icons from '../icons.json'
 import theme from './theme'
-
+import cleanElement from 'clean-element'
 // Should be removed eventually after v1.0.0
 const aliases = {
   scrollLeft: 'chevronLeft',

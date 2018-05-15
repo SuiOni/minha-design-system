@@ -1,3 +1,8 @@
+import { css } from 'styled-components'
+import lighten from 'polished/lib/color/lighten'
+import darken from 'polished/lib/color/darken'
+import shade from 'polished/lib/color/shade'
+
 const createMediaQuery = n => `@media screen and (min-width:${n}em)`
 
 const addAliases = (arr, aliases) =>
@@ -10,7 +15,7 @@ const addAliases = (arr, aliases) =>
     })
   )
 
-export const breakpoints = [32, 40, 48, 64]
+export const breakpoints = [32, 40, 48, 64].map(n => n + 'em')
 
 export const mediaQueries = breakpoints.map(createMediaQuery)
 
@@ -62,6 +67,25 @@ const darkOrange = '#a50'
 const lightPurple = '#ecf'
 const purple = '#70b' // secondary
 const darkPurple = '#407'
+
+// COLORS for the NAV and Websites
+const vision = '#FC3BA3'
+const work = '#FCE89F'
+const journal = '#9FFCA8'
+const projects = '#9FFCF7'
+const contact = '#9FAEFC'
+const collective = '#C29FFC'
+const shop = '#FC9FED'
+
+const paleGrey = '#efefef'
+const lightGrey = 'rgba(20, 20, 20, 0.1)'
+const darkGrey = darken(0.05, '#282a36')
+const grey = '#282a36'
+
+const violetRed = 'rgb(219, 112, 147)'
+const lightVioletRed = lighten(0.27, 'rgb(219, 112, 147)')
+
+const gold = shade(0.9, 'rgb(243, 182, 97)')
 
 // tints
 const flatten = (name, colors) =>
@@ -120,7 +144,21 @@ const colors = {
   greens,
   reds,
   oranges,
-  purples
+  purples,
+  paleGrey,
+  lightGrey,
+  darkGrey,
+  grey,
+  violetRed,
+  lightVioletRed,
+  gold,
+  vision,
+  work,
+  journal,
+  projects,
+  contact,
+  collective,
+  shop
 }
 
 Object.defineProperties(colors, {
@@ -187,3 +225,35 @@ const theme = {
 }
 
 export default theme
+
+//SELF ADDED
+export const mediaQueryMinWidthWrap = aliases.reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (min-width: ${breakpoints[label]}) {
+      ${css(...args)};
+    }
+  `
+  return acc
+}, {})
+
+export const sizes = {
+  special: {
+    sidebarWidth: 300,
+    navbarHeight: 50
+  }
+}
+
+const lineHeights = [1, 1.125, 1.25, 1.5]
+const borders = [0, '1px solid', '2px solid']
+const shadows = [`0 1px 2px 0 ${colors.text}`, `0 1px 4px 0 ${colors.text}`]
+//check whats going on in LayoutSC line 18
+export const fonts = {
+  font,
+  bodyFont:
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+  monospace: '"Operator Mono SSm A", "Operator Mono SSm B", monospace',
+  get headerFont() {
+    return `"Avenir Next", ${this.bodyFont}`
+  }
+}
+const fontFamily = fonts.bodyFont
